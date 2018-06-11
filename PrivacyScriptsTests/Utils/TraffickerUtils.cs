@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace PrivacyScriptsTests.Utils
 {
-	class TraffickerUtils
+	public class TraffickerUtils
 	{
 		public static Queue<string> _files = new Queue<string>();
 
@@ -21,37 +21,33 @@ namespace PrivacyScriptsTests.Utils
 
 		public static Uri CreateTraffickerHTML()
 		{
-			var config = TraffickerConfig.Default;
+			var traffickerConfig = TraffickerConfig.Default;
+			var settings = SettingsConfig.Default;
+			var themes = ThemesConfig.Default;
 
-			return CreateTraffickerHTML(config);
+			return CreateTraffickerHTML(traffickerConfig, settings, themes);
 		}
 
-		public static Uri CreateTraffickerHTML(TraffickerConfig config)
+		public static Uri CreateTraffickerHTML(TraffickerConfig traffickerConfig, SettingsConfig settingsConfig, ThemesConfig themeConfig)
 		{
-			var html = PrivacyScriptsTests.Resources.sitenotice3;
-			return CreateTraffickerHTML(config, html);
+			var settingsJS = SetupJSFile(Resources.settingsJS, settingsConfig);
+			var themeJS = SetupJSFile(Resources.themesJS, themeConfig);
+
+			var parameters = traffickerConfig.ToDictionary();
+			parameters.Add("{settingsJSPath}", settingsJS);
+			parameters.Add("{themesJSPath}", themeJS);
+
+			var content = Interpolate(Resources.sitenotice3, parameters);
+			var traffickerFile = CreateTempFile(content, ".tests.privacyscripts.com");
+
+			return new Uri(traffickerFile);
 		}
 
-		public static Uri CreateTraffickerHTML(TraffickerConfig config, string html)
+		private static string SetupJSFile(string body, ConfigBase config)
 		{
-			var settingsJS = PrivacyScriptsTests.Resources.settingsJS;
-			return CreateTraffickerHTML(config, html, settingsJS);
-		}
-
-		public static Uri CreateTraffickerHTML(TraffickerConfig config, string html, string settingsJS)
-		{
-			var parameters = config.ToDictionary();
-
-			//settingsJS = Interpolate(settingsJS, parameters);
-
-			string tempJS = CreateTempFile(settingsJS, ".js");
-			string baseJS = Path.GetFileName(tempJS);
-
-			parameters.Add("{settingsJSPath}", baseJS);
-			html = Interpolate(html, parameters);
-			string tempHTML = CreateTempFile(html, ".html");
-
-			return new Uri(tempHTML);
+			var content = Interpolate(body, config.ToDictionary());
+			var file = CreateTempFile(content, ".js");
+			return Path.GetFileName(file);
 		}
 
 		private static string Interpolate(string body, Dictionary<string, string> parameters)

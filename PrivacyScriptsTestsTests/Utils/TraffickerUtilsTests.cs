@@ -1,10 +1,6 @@
 ﻿using NUnit.Framework;
 using PrivacyScriptsTests.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrivacyScriptsTests.Tests.Utils
 {
@@ -26,13 +22,21 @@ namespace PrivacyScriptsTests.Tests.Utils
 		public void TestCreateHTML()
 		{
 			var htmlPath = TraffickerUtils.CreateTraffickerHTML();
-			Console.WriteLine(htmlPath.LocalPath);
 
-			Assert.AreEqual(2, TraffickerUtils._files.Count);
+			Assert.AreEqual(3, TraffickerUtils._files.Count);
 
 			TraffickerUtils.CleanUpFiles();
 
 			Assert.AreEqual(0, TraffickerUtils._files.Count);
+		}
+
+		[Test]
+		public void TestCreateHTMLNoCleanup()
+		{
+			var htmlPath = TraffickerUtils.CreateTraffickerHTML();
+			Console.WriteLine(htmlPath.LocalPath);
+
+			TraffickerUtils._files.Clear();
 		}
 	}
 }

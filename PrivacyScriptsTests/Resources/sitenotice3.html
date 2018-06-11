@@ -45,8 +45,7 @@
 
 			append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
 			append('evidon-location', cdn + 'geo/country.js', true);
-			append('evidon-themes', noticecdn + id + '/snthemes.js', true);
-			// if (rootDomain)
+			append('evidon-themes', '{themesJSPath}', true);
 			append('evidon-settings', '{settingsJSPath}', true);
 
 			window.evidon.priorConsentCallback = function () {
@@ -69,7 +68,7 @@
 		})({companyId});
 
 		setTimeout(function () {
-			window.evidon.notice.setDomain('{domain}');
+			//window.evidon.notice.setDomain('{domain}');
 		}, 1000);
 	</script>
 </head>

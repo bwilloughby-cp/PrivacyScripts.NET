@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="BrowserFixtureData.cs" />
     <Compile Include="DriverManager.cs" />
+    <Compile Include="Enums\ConsentDisplayType.cs" />
     <Compile Include="Enums\EnvironmentType.cs" />
     <Compile Include="EvidonConstants.cs" />
     <Compile Include="ITestAction.cs" />
@@ -86,7 +87,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Tests\SmokeTests.cs" />
-    <Compile Include="Tests\Utils\TraffickerUtilsTests.cs" />
+    <Compile Include="Utils\ConfigBase.cs" />
+    <Compile Include="Utils\SettingsConfig.cs" />
+    <Compile Include="Utils\ThemeConfig.cs" />
     <Compile Include="Utils\TraffickerConfig.cs" />
     <Compile Include="Utils\TraffickerUtils.cs" />
   </ItemGroup>
@@ -105,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\sitenotice3.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\themes.js" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

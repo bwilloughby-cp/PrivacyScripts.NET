@@ -63,9 +63,9 @@ namespace PrivacyScriptsTests {
         /// <summary>
         ///   Looks up a localized string similar to (function () {
         ///	var a = {};
-        ///	a[&quot;brandon.willoughby.com/us|41&quot;] = {
-        ///		id: 41,
-        ///		themeId: 23,
+        ///	a[&quot;privacy.scripts.com|1&quot;] = {
+        ///		id: 1,
+        ///		themeId: 1,
         ///		consentDisplayType: 1,
         ///		division: &quot;Ghostery&quot;,
         ///		includeSubdomains: 2,
@@ -86,7 +86,7 @@ namespace PrivacyScriptsTests {
         ///				l2enabled: 1,
         ///				gdprEnabled: 1,
         ///				dataRightsType: 1,
-        /// [rest of string was truncated]&quot;;.
+        ///				right [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string settingsJS {
             get {
@@ -117,6 +117,27 @@ namespace PrivacyScriptsTests {
         internal static string sitenotice3 {
             get {
                 return ResourceManager.GetString("sitenotice3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (function() {
+        ///    var a = {};
+        ///    a[1] = {
+        ///        link: {
+        ///            linkIcon: &quot;https://c.evidon.com/pub/icong1.png&quot;,
+        ///            linkStyle: &quot;cursor:pointer;text-decoration:none;font-size:11pt;color:#000000;&quot;,
+        ///            mobileLinkIcon: &quot;https://c.evidon.com/pub/icong1.png&quot;,
+        ///            mobileLinkStyle: &quot;cursor:pointer;text-decoration:none;font-size:11pt;color:#000000;&quot;,
+        ///            mobileShowIcon: true,
+        ///            showIcon: true
+        ///        },
+        ///        button: {
+        ///            buttonIcon: &quot;https:// [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string themesJS {
+            get {
+                return ResourceManager.GetString("themesJS", resourceCulture);
             }
         }
     }

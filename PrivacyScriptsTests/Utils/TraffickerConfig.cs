@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
 
-namespace PrivacyScriptsTests
+namespace PrivacyScriptsTests.Utils
 {
-	public class TraffickerConfig
+	public class TraffickerConfig : ConfigBase
 	{
 		private static TraffickerConfig _default;
 
@@ -13,16 +13,13 @@ namespace PrivacyScriptsTests
 			{
 				if (_default == null)
 				{
-					var protocol = ConfigurationManager.AppSettings["protocol"];
-					var cdn = ConfigurationManager.AppSettings["cdn"];
-					var companyId = int.Parse(ConfigurationManager.AppSettings["companyId"]);
 					var domain = ConfigurationManager.AppSettings["domain"];
 
 					_default = new TraffickerConfig()
 					{
-						Protocol = protocol,
-						CDN = cdn,
-						CompanyId = companyId,
+						Protocol = "https:",
+						CDN = "dev.betrad.com",
+						CompanyId = 242,
 						Domain = domain
 					};
 				}
@@ -36,19 +33,17 @@ namespace PrivacyScriptsTests
 		public int CompanyId { get; set; }
 		public string Domain { get; set; }
 
-		public int ConsentType { get; set; }
-
 		public TraffickerConfig()
 		{
 
 		}
 
-		public Dictionary<string, string> ToDictionary()
+		public override Dictionary<string, string> ToDictionary()
 		{
 			var parameters = new Dictionary<string, string>();
 
-			parameters.Add("{cdn}", CDN);
 			parameters.Add("{protocol}", Protocol);
+			parameters.Add("{cdn}", CDN);
 			parameters.Add("{companyId}", CompanyId.ToString());
 			parameters.Add("{domain}", Domain);
 
