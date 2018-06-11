@@ -38,7 +38,7 @@ namespace PrivacyScriptsTests.Utils
 			parameters.Add("{themesJSPath}", themeJS);
 
 			var content = Interpolate(Resources.sitenotice3, parameters);
-			var traffickerFile = CreateTempFile(content, ".tests.privacyscripts.com");
+			var traffickerFile = CreateTempFile(content, ".html");
 
 			return new Uri(traffickerFile);
 		}

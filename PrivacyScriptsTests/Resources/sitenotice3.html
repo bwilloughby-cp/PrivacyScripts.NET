@@ -46,7 +46,9 @@
 			append('evidon-notice', noticecdn + 'evidon-sitenotice-tag.js', false);
 			append('evidon-location', cdn + 'geo/country.js', true);
 			append('evidon-themes', '{themesJSPath}', true);
-			append('evidon-settings', '{settingsJSPath}', true);
+			setTimeout(function () {
+				append('evidon-settings', '{settingsJSPath}', true);
+			}, 1000);
 
 			window.evidon.priorConsentCallback = function () {
 				// add the tags which need to wait for prior consent
@@ -68,8 +70,8 @@
 		})({companyId});
 
 		setTimeout(function () {
-			//window.evidon.notice.setDomain('{domain}');
-		}, 1000);
+			window.evidon.notice.setDomain('{domain}');
+		}, 500);
 	</script>
 </head>
 
